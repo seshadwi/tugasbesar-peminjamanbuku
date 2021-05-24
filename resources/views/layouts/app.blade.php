@@ -37,7 +37,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @guest
+                        @else
+                        <li class="nav-item dropdown">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                  <li class="nav-item {{ Route::has('home') ? 'active' : 'non' }}">
+                                    <a class="nav-link" href="#">Home</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#">Buku</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#">Peminjaman</a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

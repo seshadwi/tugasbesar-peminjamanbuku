@@ -2,21 +2,17 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <h1>Home</h1>
+    <p class="lead">Data buku dan peminjaman</p>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+    <div class="d-flex">
+        <div class="w-25 bg-primary text-white p-2 m-2 rounded-lg">
+            <h4>Jumlah buku : <span class="badge badge-light">4</span></h4>
+            <a href="#" class="btn btn-success">Lihat buku</a>
+        </div>
+        <div class="w-25 bg-success text-white p-2 m-2 rounded-lg">
+            <h4>Jumlah buku dipinjam : <span class="badge badge-light">4</span></h4>
+            <a href="#" class="btn btn-primary">Lihat peminjaman</a>
         </div>
     </div>
 </div>
