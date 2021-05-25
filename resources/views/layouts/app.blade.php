@@ -42,11 +42,11 @@
                         <li class="nav-item dropdown">
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
-                                  <li class="nav-item {{ Route::has('home') ? 'active' : 'non' }}">
-                                    <a class="nav-link" href="#">Home</a>
+                                  <li class="nav-item {{ Request::is('home') ? 'active' : 'non' }}">
+                                    <a class="nav-link" href="{{ route('home') }}">Home</a>
                                   </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="#">Buku</a>
+                                  <li class="nav-item {{ Request::is('book') || Request::is('book/*') ? 'active' : 'non' }}">
+                                    <a class="nav-link" href="{{ route('book.index') }}">Buku</a>
                                   </li>
                                   <li class="nav-item">
                                     <a class="nav-link" href="#">Peminjaman</a>

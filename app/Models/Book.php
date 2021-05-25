@@ -10,6 +10,13 @@ class Book extends Model
     use HasFactory;
 
     protected $table = "book";
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'judul',
+        'penulis',
+        'gambar'
+    ];
 
     public function book_logs()
     {
