@@ -78,7 +78,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::where('id', $id)->first();
+        return view('book.edit', compact('book'));
     }
 
     /**
@@ -90,7 +91,23 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+        ]);
+
+        $book = Book::where('id', $id)->first();
+        $book->judul = $request->get('judul');
+        $book->penulis = $request->get('penulis');
+        if ($book->gambar && file_exists(storage_path('images/book/' . $book->gambar))) {
+            Storage::delete('public/' . $book->gambar);
+        }
+        if ($request->file('image')) {
+            $book->gambar = $request->file('image')->store('images', 'public');
+        }
+        $book->save();
+
+        return redirect()->route('book.show', $id)->with('success', 'Berhasil mengubah data buku');
     }
 
     /**
@@ -101,6 +118,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::where('id', $id)->delete();
+        return redirect()->route('mahasiswa.index')->with('success', 'Berhasil menghapus data buku');
     }
 }
