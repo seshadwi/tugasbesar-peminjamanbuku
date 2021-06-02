@@ -20,6 +20,6 @@ class Book extends Model
 
     public function book_logs()
     {
-        return $this->hasMany(Book_logs::class);
+        return $this->belongsTo(Book_logs::class);
     }
 }

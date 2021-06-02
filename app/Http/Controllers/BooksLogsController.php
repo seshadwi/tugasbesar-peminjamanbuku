@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookLogs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BooksLogsController extends Controller
 {
@@ -14,8 +15,8 @@ class BooksLogsController extends Controller
      */
     public function index()
     {
-        $data['booklogs'] = BookLogs::get();
-        print_r($data);
+        $booklogs = BookLogs::where(['id_peminjam' => Auth::user()->id, 'status' => 'pinjam'])->with('book', 'user')->get();
+        return view('booklogs/index', compact('booklogs'));
     }
 
     /**
@@ -82,5 +83,15 @@ class BooksLogsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function kembalikan($id)
+    {
+        $data = BookLogs::where("id", $id)->first();
+        $data->update([
+            'status' => 'kembali',
+            'tanggal_kembali' => Date('Y-m-d')
+        ]);
+        return redirect()->route('booklogs.index')->with('success', 'Berhasil mengembalikan buku');
     }
 }

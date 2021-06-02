@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BookLogsControlller;
 use App\Http\Controllers\BooksLogsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +29,8 @@ Route::get('book/pinjam/{id}', [BookController::class, "pinjam"])->name('book.pi
 Route::post('book/storepinjam', [BookController::class, "storepinjam"])->name('book.storepinjam');
 
 Route::resource('booklogs', BooksLogsController::class);
+
+Route::get('booklogs/kembali/{id}', [BooksLogsController::class, "kembalikan"])->name('booklogs.kembali');
 
 // Agar saat masuk ke web jika belum login maka akan di arahkan ke login, jika sudah login maka akan masuk ke halaman home
 Route::get('/', function () {

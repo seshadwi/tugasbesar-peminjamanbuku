@@ -23,6 +23,10 @@ class BookLogs extends Model
 
     public function book()
     {
-        return $this->belongsTo(Book::class);
+        return $this->hasMany(Book::class, 'id', 'id_buku');
+    }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id', 'id_peminjam');
     }
 }
