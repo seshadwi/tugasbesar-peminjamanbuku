@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -42,17 +43,19 @@
                         <li class="nav-item dropdown">
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
-                                  <li class="nav-item {{ Request::is('home') ? 'active' : 'non' }}">
-                                    <a class="nav-link" href="{{ route('home') }}">Home</a>
-                                  </li>
-                                  <li class="nav-item {{ Request::is('book') || Request::is('book/*') ? 'active' : 'non' }}">
-                                    <a class="nav-link" href="{{ route('book.index') }}">Buku</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="#">Peminjaman</a>
-                                  </li>
+                                    <li class="nav-item {{ Request::is('home') ? 'active' : 'non' }}">
+                                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                                    </li>
+                                    <li
+                                        class="nav-item {{ Request::is('book') || Request::is('book/*') ? 'active' : 'non' }}">
+                                        <a class="nav-link" href="{{ route('book.index') }}">Buku</a>
+                                    </li>
+                                    <li
+                                        class="nav-item {{ Request::is('booklogs') || Request::is('booklogs/*') ? 'active' : 'non' }}">
+                                        <a class="nav-link" href="{{ route('booklogs.index') }}">Peminjaman</a>
+                                    </li>
                                 </ul>
-                              </div>
+                            </div>
                         </li>
                         @endguest
                     </ul>

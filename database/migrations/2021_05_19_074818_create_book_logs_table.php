@@ -15,13 +15,13 @@ class CreateBookLogsTable extends Migration
     {
         Schema::create('book_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_peminjam');
+            $table->bigInteger('id_peminjam')->unsigned();
+            $table->foreign('id_peminjam')->references('id')->on('users');
             $table->bigInteger('id_buku')->unsigned();
             $table->foreign('id_buku')->references('id')->on('book');
-            $table->bigInteger('id_petugas')->unsigned();
-            $table->foreign('id_petugas')->references('id')->on('users');
+            $table->enum('status', ['pinjam', 'kembali']);
             $table->date('tanggal_ambil');
-            $table->date('tanggal_kembali');
+            $table->date('tanggal_kembali')->nullable();
             $table->timestamps();
         });
     }

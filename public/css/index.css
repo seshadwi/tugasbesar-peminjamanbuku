@@ -1,0 +1,5 @@
+.book-image {
+    height: 20rem;
+    object-fit: cover;
+    object-position: center;
+}

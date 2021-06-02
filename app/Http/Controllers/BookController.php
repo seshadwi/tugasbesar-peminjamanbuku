@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookLogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class BookController extends Controller
 {
@@ -45,10 +47,12 @@ class BookController extends Controller
         $request->validate([
             'judul' => 'required',
             'penulis' => 'required',
-            'gambar' => 'required'
+            'image' => 'required'
         ]);
         if ($request->file('image')) {
             $image_name = $request->file('image')->store('images/book', 'public');
+        } else {
+            $image_name = asset('images/default.jpg');
         }
         Book::create([
             'judul' => $request->get('judul'),
@@ -119,6 +123,25 @@ class BookController extends Controller
     public function destroy($id)
     {
         Book::where('id', $id)->delete();
-        return redirect()->route('mahasiswa.index')->with('success', 'Berhasil menghapus data buku');
+        return redirect()->route('book.index')->with('success', 'Berhasil menghapus data buku');
+    }
+
+    public function pinjam($id)
+    {
+        $book = Book::where('id', $id)->get();
+        return view("book/pinjam", compact("book"));
+    }
+    public function storepinjam(Request $request)
+    {
+        $request->validate([
+            'tanggalpeminjaman' => 'required'
+        ]);
+        BookLogs::create([
+            'id_peminjam' => $request->get('idpeminjam'),
+            'id_buku' => $request->get('idbuku'),
+            'status' => 'pinjam',
+            'tanggal_ambil' => $request->get('tanggalpeminjaman')
+        ]);
+        return redirect()->route('book.index')->with('success', 'Berhasil meminjam buku');
     }
 }
