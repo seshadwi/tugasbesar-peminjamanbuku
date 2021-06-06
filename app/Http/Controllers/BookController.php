@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\BookLogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 class BookController extends Controller
@@ -143,5 +144,11 @@ class BookController extends Controller
             'tanggal_ambil' => $request->get('tanggalpeminjaman')
         ]);
         return redirect()->route('book.index')->with('success', 'Berhasil meminjam buku');
+    }
+    public function home()
+    {
+        $data['book'] = Count(Book::all());
+        $data['book_logs'] = Count(BookLogs::where('id_peminjam', Auth::user()->id)->get());
+        return view('home', $data);
     }
 }
