@@ -4,11 +4,11 @@
 <div class="bg-full-home d-flex justify-content-center align-items-center h-100 p-2">    
     <div class="container bg-light h-75 w-25 p-3 rounded d-flex flex-column justify-content-center ">
         <div class="text-center my-2">
-            <h2 class="font-weight-bold">Login</h2>
-            <span>Login pengguna dengan menggunakan akun yang sudah terdaftar</span>
+            <h2 class="font-weight-bold">Login Admin</h2>
+            <span>Login admin hanya untuk pengelola saja</span>
         </div>
         <div>
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('admin.login') }}">
                 @csrf
                 <div class="form-group">
                   <label for="username">{{__("Username")}}</label>
@@ -36,8 +36,7 @@
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary btn-block ">Login</button>
-                    <a href="{{ route('register') }}" class="btn btn-outline-info btn-block" role="button">Register</a>
-                    <a href="{{ route('admin.login') }}" class="btn btn-outline-danger btn-block" role="button">Admin</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-danger btn-block" role="button">Back</a>
                 </div>
             </form>
         </div>
