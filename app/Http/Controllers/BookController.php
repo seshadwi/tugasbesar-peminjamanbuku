@@ -23,7 +23,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $book = Book::orderBy('judul', 'asc')->paginate(20);
+        $book = Book::orderBy('judul', 'asc')->paginate(10);
         return view('book.index', compact('book'));
     }
 

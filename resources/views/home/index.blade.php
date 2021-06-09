@@ -24,7 +24,6 @@
                 </ul>
             </div>
         </nav>
-        <hr>
         <div class="container d-flex">
             <div class="w-50">
                 <h1>Selamat Datang</h1>
@@ -36,7 +35,7 @@
                 </p>
             </div>
             <div class="w-50">
-                <img class="w-100 img-fluid" src="{{ asset('images/bg-home.png') }}" alt="" srcset="">
+                <img class="w-75 img-fluid" src="{{ asset('images/bg-home.png') }}" alt="" srcset="">
             </div>
         </div>
     </div>

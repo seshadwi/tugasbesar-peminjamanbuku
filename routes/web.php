@@ -33,5 +33,6 @@ Route::get('book/pinjam/{id}', [BookController::class, "pinjam"])->name('book.pi
 Route::post('book/storepinjam', [BookController::class, "storepinjam"])->name('book.storepinjam');
 Route::resource('booklogs', BooksLogsController::class);
 Route::get('booklogs/kembali/{id}', [BooksLogsController::class, "kembalikan"])->name('booklogs.kembali');
+Route::get('booklogs/cetakbukti/{id}', [BooksLogsController::class, "cetak_bukti"])->name('booklogs.cetak');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');

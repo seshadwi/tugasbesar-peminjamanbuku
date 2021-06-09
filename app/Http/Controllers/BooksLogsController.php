@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\BookLogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+use Illuminate\Support\Facades\App;
 
 class BooksLogsController extends Controller
 {
@@ -15,7 +18,7 @@ class BooksLogsController extends Controller
      */
     public function index()
     {
-        $booklogs = BookLogs::where(['id_peminjam' => Auth::user()->id, 'status' => 'pinjam'])->with('book', 'user')->get();
+        $booklogs = BookLogs::where(['id_peminjam' => Auth::user()->id, 'status' => 'pinjam'])->with('book', 'user')->paginate(10);
         return view('booklogs/index', compact('booklogs'));
     }
 
@@ -93,5 +96,17 @@ class BooksLogsController extends Controller
             'tanggal_kembali' => Date('Y-m-d')
         ]);
         return redirect()->route('booklogs.index')->with('success', 'Berhasil mengembalikan buku');
+    }
+    public function cetak_bukti($id)
+    {
+        $data['books'] = BookLogs::where('id', $id)->with('book', 'user')->first();
+        $data['title'] = "Bukti Peminjaman Buku";
+        $view = view('booklogs/bukti', $data);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream();
+        // $pdf = PDF::loadview('booklogs/bukti', ["books" => $data['books'], 'title' => $data['title']]);
+        // $filename = date("d-F-Y-pinjaman-" . $data['books']->user[0]->username . "");
+        // return $pdf->download($filename);
     }
 }

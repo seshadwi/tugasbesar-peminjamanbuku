@@ -1,19 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('content')
-<div class="container">
-    <h1>Home</h1>
-    <p class="lead">Data buku dan peminjaman</p>
-
-    <div class="d-flex">
-        <div class="w-25 bg-primary text-white p-2 m-2 rounded-lg">
-            <h4>Jumlah buku : <span class="badge badge-light">{{__($book)}}</span></h4>
-            <a href="{{ route('book.index') }}" class="btn btn-success">Lihat buku</a>
+    <div class="container p-3 d-flex">
+        <div class="w-50">
+            <h1>Selamat Datang, {{__(Auth::user()->username)}}</h1>
+            <p class="lead">Anda Sudah berhasil login, selamat menggunakan fitur fitur yang tersedia dalam website Perpustakaan</p>
+            <hr>
+            <div class="w-50 p-3 rounded" style="background-color: #cee5d0 !important;">
+                <h2>Lihat Daftar Buku</h2>
+                <p>Lihat daftar buku yang dapat di pinjam</p>
+                <a role="button" href="{{ route('book.index') }}" class="btn btn-outline-dark">Lihat</a>
+            </div>
         </div>
-        <div class="w-25 bg-success text-white p-2 m-2 rounded-lg">
-            <h4>Jumlah buku dipinjam : <span class="badge badge-light">{{__($book_logs)}}</span></h4>
-            <a href="{{ route('booklogs.index') }}" class="btn btn-primary">Lihat peminjaman</a>
+        <div class="w-50">
+            <img class="w-100 img-fluid" src="{{ asset('images/bg-home.png') }}" alt="" srcset="">
         </div>
     </div>
-</div>
 @endsection
