@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthAdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BooksLogsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ManageBookController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,13 +24,16 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/login/admin', [AdminController::class, 'showAdminLogin'])->name('admin.login');
-Route::post('/login/admin', [AdminController::class, 'loginAdmin'])->name('admin.login');
+Route::get('/login/admin', [AuthAdminController::class, 'showAdminLogin'])->name('admin.login');
+Route::post('/login/admin', [AuthAdminController::class, 'loginAdmin'])->name('admin.login');
+Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
+Route::resource('admin/bookmanage', ManageBookController::class);
+
 
 // route untuk tampilan home
 Route::get('/home', [BookController::class, 'home'])->name('home');
 // route resource untuk tampilan pengelolaan buku
-Route::resource('book', BookController::class);
+Route::resource('book', BookController::class)->except('book.create, book.store, book.update, book.edit, book.destroy');
 Route::get('book/pinjam/{id}', [BookController::class, "pinjam"])->name('book.pinjam');
 Route::post('book/storepinjam', [BookController::class, "storepinjam"])->name('book.storepinjam');
 Route::resource('booklogs', BooksLogsController::class);

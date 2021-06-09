@@ -22,7 +22,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
 </head>
 
 <body>

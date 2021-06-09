@@ -6,6 +6,7 @@
         <div class="text-center my-2">
             <h2 class="font-weight-bold">Login Admin</h2>
             <span>Login admin hanya untuk pengelola saja</span>
+            <hr>
         </div>
         <div>
             <form method="POST" action="{{ route('admin.login') }}">

@@ -6,6 +6,7 @@
         <div class="w-50">
             <h1>Buku</h1>
             <p class="lead">Daftar buku pada perpustakaan</p>
+            @endif
         </div>
         <div class="w-50 h-25 d-flex align-self-center justify-content-center">
             <form class="form-inline">
