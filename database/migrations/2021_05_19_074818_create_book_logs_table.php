@@ -20,6 +20,7 @@ class CreateBookLogsTable extends Migration
             $table->bigInteger('id_buku')->unsigned();
             $table->foreign('id_buku')->references('id')->on('book');
             $table->enum('status', ['pinjam', 'kembali']);
+            $table->integer('jumlah');
             $table->date('tanggal_ambil');
             $table->date('tanggal_kembali')->nullable();
             $table->timestamps();

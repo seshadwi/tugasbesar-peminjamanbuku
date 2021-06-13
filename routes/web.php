@@ -36,10 +36,10 @@ Route::resource('admin/logsmanage', PeminjamanController::class);
 // route untuk tampilan home
 Route::get('/home', [BookController::class, 'home'])->name('home');
 // route resource untuk tampilan pengelolaan buku
-Route::resource('book', BookController::class)->except('book.create, book.store, book.update, book.edit, book.destroy');
+Route::resource('book', BookController::class, ['except' => ['create', 'store', 'update', 'destroy']]);
 Route::get('book/pinjam/{id}', [BookController::class, "pinjam"])->name('book.pinjam');
 Route::post('book/storepinjam', [BookController::class, "storepinjam"])->name('book.storepinjam');
-Route::resource('booklogs', BooksLogsController::class);
+Route::resource('booklogs', BooksLogsController::class,  ['except' => ['create', 'store', 'update', 'destroy', 'show', 'edit']]);
 Route::get('booklogs/kembali/{id}', [BooksLogsController::class, "kembalikan"])->name('booklogs.kembali');
 Route::get('booklogs/cetakbukti/{id}', [BooksLogsController::class, "cetak_bukti"])->name('booklogs.cetak');
 

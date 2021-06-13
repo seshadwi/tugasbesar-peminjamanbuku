@@ -20,6 +20,7 @@
                 <hr>
                 <h4>Nama Buku : {{$books->book[0]->judul}}</h4>
                 <h4>Nama Penulis : {{$books->book[0]->penulis}}</h4>
+                <h4>jumlah buku : {{$books->jumlah}}</h4>
                 <h4>Tanggal Peminjaman : {{date("d F Y", strtotime($books->tanggal_ambil))}} </h4>
                 <div style="border: 0.1rem solid red;padding: 1rem">
                     <h4>Tanggal Pengembalian</h4>

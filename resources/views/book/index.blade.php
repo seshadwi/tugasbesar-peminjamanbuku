@@ -6,8 +6,17 @@
         <div class="w-50">
             <h1>Buku</h1>
             <p class="lead">Daftar buku pada perpustakaan</p>
-            @endif
         </div>
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            {{$message}}
+        </div>
+        @endif
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger">
+            {{$message}}
+        </div>
+        @endif
         <div class="w-50 h-25 d-flex align-self-center justify-content-center">
             <form class="form-inline">
                 <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Cari nama buku" aria-label="Search">

@@ -7,7 +7,16 @@
         <p class="lead">Halaman peminjaman buku</p>
         <hr>
     </div>
-
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        {{$message}}
+    </div>
+    @endif
+    @if ($message = Session::get('error'))
+    <div class="alert alert-danger">
+        {{$message}}
+    </div>
+    @endif
     <div class="d-flex">
         <div class="card" style="width: 30%;">
             <img class="card-img-top book-image p-4" style="height: 15rem;" src="{{ asset('storage/'.$book[0]->gambar.'') }}" alt="">
@@ -31,9 +40,15 @@
                     <small id="helpId" class="form-text text-muted">Nama peminjam dari pengguna</small>
                 </div>
                 <div class="form-group">
+                  <label for="stok">Jumlah Buku</label>
+                  <input type="number"
+                    class="form-control" name="stok" id="stok" value="1" max="{{$book[0]->stock}}" aria-describedby="stokid" required>
+                  <small id="stokid" class="form-text text-muted">Jumlah stock buku masih <span class="badge badge-success">{{$book[0]->stock}}</span></small>
+                </div>
+                <div class="form-group">
                     <label for="tanggalpeminjaman">Tanggal peminjaman</label>
                     <input type="date" class="form-control" name="tanggalpeminjaman" id="tanggalpeminjaman"
-                        aria-describedby="tanggalpeminjaman" placeholder="">
+                        aria-describedby="tanggalpeminjaman" required placeholder="">
                     <small id="tanggalpeminjaman" class="form-text text-muted">Masukkan tanggal peminjaman</small>
                     @error('tanggalpeminjaman')
                     <p class="text-danger">{{$message}}</p>

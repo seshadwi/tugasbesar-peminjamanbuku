@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\BookLogs;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        //
+        redirect('logsmanage.index');
     }
 
     /**
@@ -36,7 +37,7 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        redirect('logsmanage.index');
     }
 
     /**
@@ -60,6 +61,10 @@ class PeminjamanController extends Controller
     public function edit($id)
     {
         $data = BookLogs::where("id", $id)->first();
+        $book = Book::where('id', $data->id_buku)->first();
+        $book->update([
+            'stock' => $data->jumlah + $book->stock
+        ]);
         $data->update([
             'status' => 'kembali',
             'tanggal_kembali' => Date('Y-m-d')
@@ -87,6 +92,7 @@ class PeminjamanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        BookLogs::where('id', $id)->delete();
+        return redirect()->route('logsmanage.index')->with('success', 'Berhasil menghapus data peminjaman');
     }
 }

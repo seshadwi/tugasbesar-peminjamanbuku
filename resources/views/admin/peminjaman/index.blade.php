@@ -7,6 +7,11 @@
         <p>{{$message}}</p>
     </div>
     @endif
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger">
+            {{$message}}
+        </div>
+        @endif
     <div class="d-flex w-100">
         <div class="w-50">
             <h1>Peminjaman Buku</h1>

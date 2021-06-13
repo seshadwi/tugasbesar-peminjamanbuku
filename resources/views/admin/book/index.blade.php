@@ -33,6 +33,7 @@
                     <th>#</th>
                     <th>Judul Buku</th>
                     <th>Penulis Buku</th>
+                    <th>Stok Buku</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -42,6 +43,7 @@
                     <td scope="row">{{$loop->index +1}}</td>
                     <td>{{__($item->judul)}}</td>
                     <td>{{__($item->penulis)}}</td>
+                    <td>{{__($item->stock)}}</td>
                     <td>
                         
                         {{-- <a href="{{ route('bookmanage.destroy', $item->id) }}" class="btn btn-sm btn-danger">Delete</a> --}}

@@ -17,6 +17,7 @@ class BookLogs extends Model
         'id_peminjam',
         'id_buku',
         'status',
+        'jumlah',
         'tanggal_ambil',
         'tanggal_kembali'
     ];

@@ -9,14 +9,19 @@
         <div class="container d-flex w-100">
             <div class="w-50">
                 <img src="{{ asset('storage/'.$booklogs->book[0]->gambar.'') }}" class="img-thumbnail w-50 mx-auto d-block" alt="...">
+                {{ Form::open(['url' => route('logsmanage.destroy', $booklogs->id)]) }}
+                {{ Form::hidden('_method', 'DELETE') }}
                 <div class="btn-group btn-block p-4 btn-group-toggle" data-toggle="buttons">
                     @if ($booklogs->status == 'pinjam')
-                        <a href="{{ route('logsmanage.edit', $booklogs->id) }}" class="btn btn-primary">Pinjam</a>    
+                        <a href="{{ route('logsmanage.edit', $booklogs->id) }}" class="btn btn-primary">Kembalikan</a>    
+                        <button class="btn btn-secondary disabled">Hapus</button>    
                     @else
-                    <a href="{{ route('logsmanage.edit', $booklogs->id) }}" class="btn btn-secondary disabled">Sudah dikembalikan</a>    
+                    <button class="btn btn-secondary disabled">Sudah dikembalikan</button>    
+                    {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                     @endif
-                    
                 </div>
+                {{ Form::close() }}
+                <p class="text-danger">Kembalikan buku terlebih dahulu untuk bisa menghapus data peminjaman</p>
             </div>          
             <div class="w-50">
                 <div class="row">

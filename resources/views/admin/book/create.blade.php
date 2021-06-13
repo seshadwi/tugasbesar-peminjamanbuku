@@ -10,15 +10,22 @@
         @csrf
         <div class="form-group w-50 m-3">
             <label for="exampleFormControlInput1">Judul Buku</label>
-            <input type="text" name="judul" class="form-control" placeholder="Buku">
+            <input type="text" name="judul" class="form-control" placeholder="Judul Buku">
             @error('judul')
             <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="form-group w-50 m-3">
             <label for="exampleFormControlInput1">Penulis Buku</label>
-            <input type="text" name="penulis" class="form-control" placeholder="Nama">
+            <input type="text" name="penulis" class="form-control" placeholder="Nama penulis">
             @error('penulis')
+            <p class="text-danger">{{$message}}</p>
+            @enderror
+        </div>
+        <div class="form-group w-50 m-3">
+            <label for="exampleFormControlInput1">Stok Buku</label>
+            <input type="number" name="stok" class="form-control" value="1">
+            @error('stok')
             <p class="text-danger">{{$message}}</p>
             @enderror
         </div>

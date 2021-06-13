@@ -19,6 +19,10 @@
                     <h3>Penulis Buku</h3>
                     <p class="lead">{{$book->penulis}}</p>
                 </div>
+                <div>
+                    <h3>Stok Buku</h3>
+                    <p class="lead">{{$book->stock}}</p>
+                </div>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     {{ Form::open(['url' => route('bookmanage.destroy', $book->id), 'class' => 'd-flex']) }}
                     {{ Form::hidden('_method', 'DELETE') }}

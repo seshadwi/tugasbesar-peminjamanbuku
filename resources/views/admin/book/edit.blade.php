@@ -20,6 +20,10 @@
                         <input type="text" name="penulis" value="{{$book->penulis}}" class="form-control" placeholder="Nama">
                     </div>       
                     <div class="form-group m-3">
+                        <label for="exampleFormControlInput1">Stok Buku</label>
+                        <input type="number" name="stok" value="{{$book->stock}}" class="form-control" placeholder="Nama">
+                    </div>       
+                    <div class="form-group m-3">
                         <label for="exampleFormControlFile1">Gambar Buku</label>
                         <input type="file" name="image" class="form-control-file" id="image" aria-describedby="image" > 
                     </div>

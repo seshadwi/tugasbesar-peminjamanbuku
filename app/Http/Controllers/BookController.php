@@ -135,15 +135,24 @@ class BookController extends Controller
     public function storepinjam(Request $request)
     {
         $request->validate([
-            'tanggalpeminjaman' => 'required'
+            'tanggalpeminjaman' => 'required',
+            'stok' => 'required'
         ]);
+        $data = Book::where('id', $request->get('idbuku'))->first();
+        $data->update([
+            'stock' => $data->stock - $request->get('stok')
+        ]);
+        if ($request->get('stok') >= $data->stock || $request->get('stok') <= 0) {
+            return redirect()->route('book.pinjam', $data->id)->with('error', 'Tidak bisa meminjam buku karena jumlah buku melebihi stok buku');
+        }
         BookLogs::create([
             'id_peminjam' => $request->get('idpeminjam'),
             'id_buku' => $request->get('idbuku'),
             'status' => 'pinjam',
+            'jumlah' => $request->get('stok'),
             'tanggal_ambil' => $request->get('tanggalpeminjaman')
         ]);
-        return redirect()->route('book.index')->with('success', 'Berhasil meminjam buku');
+        return redirect()->route('booklogs.index')->with('success', 'Berhasil meminjam buku');
     }
     public function home()
     {

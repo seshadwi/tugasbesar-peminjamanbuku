@@ -15,7 +15,8 @@ class Book extends Model
     protected $fillable = [
         'judul',
         'penulis',
-        'gambar'
+        'gambar',
+        'stock'
     ];
 
     public function book_logs()

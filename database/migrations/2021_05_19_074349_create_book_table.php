@@ -18,6 +18,7 @@ class CreateBookTable extends Migration
             $table->string('judul');
             $table->string('penulis');
             $table->string('gambar');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

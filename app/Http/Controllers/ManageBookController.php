@@ -41,6 +41,7 @@ class ManageBookController extends Controller
         $request->validate([
             'judul' => 'required',
             'penulis' => 'required',
+            'stok' => 'required',
             'image' => 'required'
         ]);
         if ($request->file('image')) {
@@ -51,6 +52,7 @@ class ManageBookController extends Controller
         Book::create([
             'judul' => $request->get('judul'),
             'penulis' => $request->get('penulis'),
+            'stock' => $request->get('stok'),
             'gambar' => $image_name
         ]);
         return redirect()->route('bookmanage.index')->with('success', 'berhasil menambahkan buku');
@@ -92,11 +94,13 @@ class ManageBookController extends Controller
         $request->validate([
             'judul' => 'required',
             'penulis' => 'required',
+            'stok' => 'required',
         ]);
 
         $book = Book::where('id', $id)->first();
         $book->judul = $request->get('judul');
         $book->penulis = $request->get('penulis');
+        $book->stock = $request->get('stok');
         if ($book->gambar && file_exists(storage_path('images/book/' . $book->gambar))) {
             Storage::delete('public/' . $book->gambar);
         }
