@@ -6,6 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BooksLogsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManageBookController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,8 @@ Route::get('/login/admin', [AuthAdminController::class, 'showAdminLogin'])->name
 Route::post('/login/admin', [AuthAdminController::class, 'loginAdmin'])->name('admin.login');
 Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
 Route::resource('admin/bookmanage', ManageBookController::class);
+Route::resource('admin/logsmanage', PeminjamanController::class);
+
 
 
 // route untuk tampilan home

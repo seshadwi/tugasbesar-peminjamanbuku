@@ -8,7 +8,7 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">Jumlah Buku</h5>
-                  <p class="card-text">Jumlah buku pada perpustakaan <span class="badge badge-light">{{$book}}</span></p>
+                  <p class="card-text">Jumlah buku pada perpustakaan <span class="badge badge-danger">{{$book}}</span></p>
                 </div>
               </div>
         </div>

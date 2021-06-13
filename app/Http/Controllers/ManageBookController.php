@@ -116,7 +116,6 @@ class ManageBookController extends Controller
      */
     public function destroy($id)
     {
-
         $checklogs = BookLogs::where('id_buku', $id)->with('book')->first();
         if ($checklogs) {
             return redirect()->route('bookmanage.index')->with('error', 'Tidak bisa menghapus buku ' . $checklogs->book[0]->judul . ', karena buku masih dipinjamkan');

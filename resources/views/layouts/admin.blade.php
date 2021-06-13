@@ -46,6 +46,15 @@
                         </li>
                     </ul>
                 </li>
+                <li class="{!! Request::is('admin/bookmanage') || Request::is('admin/bookmanage/*') ? "active" : "non" !!}">
+                    <a href="#peminjamanSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Peminjaman</a>
+                    <ul class="collapse list-unstyled" id="peminjamanSubmenu">
+                        <li>
+                            <a href="{{ route('logsmanage.index') }}">Kelola peminjaman</a>
+                        </li>
+                    </ul>
+                </li>
+
         </nav>
 
         <!-- Page Content  -->
